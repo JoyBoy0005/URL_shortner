@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style type="text/css">
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    line-height: 1.6;
+}
+
+h1 {
+    margin-top: 20px;
+    color: #2575fc;
+}
+
+form {
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 400px;
+}
+
+label {
+    font-size: 1rem;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1a5dbb;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    background: #e9f7fd;
+    border: 1px solid #b3dffb;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: left;
+}
+
+.result a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.result a:hover {
+    text-decoration: underline;
+}
+    </style>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <form method="POST">
+        <label for="long_url">Enter your long URL:</label>
+        <input type="text" id="long_url" name="long_url" placeholder="Enter URL " required>
+        <button type="submit">Shorten URL</button>
+    </form>
+
+    {% if short_url %}
+    <div class="result">
+        <h2>Your Shortened URL:</h2>
+        <p><a href="{{ url_for('home') }}" target="_blank">{{ request.url_root }}{{ short_url }}</a></p>
+        <p><strong>Original URL:</strong> {{ long_url }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
